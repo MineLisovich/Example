@@ -29,7 +29,7 @@
 </head>
 <body>
 
-   @await Html.PartialAsync("_HeaderPartial")
+    @await Html.PartialAsync("_HeaderPartial",   new TestPartialViewModel { Id = 1, UserName = "Peti", Age = 12 })
    @await Html.PartialAsync("_MainMenuPartial")
 
    @RenderBody()
