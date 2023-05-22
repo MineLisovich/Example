@@ -1,21 +1,24 @@
-"use strict";
+"use strict"
+{
+    // Требуется для формирования полного output пути
+    let path = require('path');
 
-module.exports = {
-    entry: "./src/file.js",
-    output: {
-        filename: "./dist/bundle.js"
-    },
-    devServer: {
-        contentBase: ".",
-        host: "localhost",
-        port: 44392
-    },
-    module: {
-        loaders: [
-            {
-                test: /\.jsx?$/,
-                loader: "babel-loader"
-            }
+    // Плагин для очистки выходной папки (bundle) перед созданием новой
+    const CleanWebpackPlugin = require('clean-webpack-plugin');
+
+    // Путь к выходной папке
+    const bundleFolder = "wwwroot/bundle/";
+
+    module.exports = {
+        // Точка входа в приложение
+        entry: path.resolve(__dirname, 'wwwroot') + '/js/main.js',  
+        // Выходной файл
+        output: {
+            filename: 'script.min.js',
+            path: path.resolve(__dirname, bundleFolder)
+        },
+        plugins: [
+            new CleanWebpackPlugin([bundleFolder])
         ]
-    }
-};
+    };
+}
